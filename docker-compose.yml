@@ -33,8 +33,7 @@ services:
     build: docker/db/
     image: camp/db:1
     # build後も使用出来る環境変数としてパスワードを設定(${}を使って.envの環境変数を指定)
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    env_file: .env
     # マウントするボリュームを指定(ホスト:コンテナ) ここにDBデータが保存される
     volumes:
       - "./mysql-data:/var/lib/mysql"
