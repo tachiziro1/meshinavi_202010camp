@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'RestaurantController@index');
+Route::resource('restaurants', 'RestaurantController', ['only' => ['index', 'show']]);;
