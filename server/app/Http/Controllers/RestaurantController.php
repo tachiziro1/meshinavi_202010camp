@@ -10,12 +10,12 @@ class RestaurantController extends Controller
     public function index()
     {
         $restaurants = Restaurant::all();
-        return view('restaurants.index', ['restaurants' => $restaurants]);
+        return view('restaurants.index', compact('restaurants'));
     }
 
     public function show($id)
     {
         $restaurant = Restaurant::find($id);
-        return view('restaurants.show',['restaurant' => $restaurant]);
+        return view('restaurants.show', compact('restaurant'));
     }
 }

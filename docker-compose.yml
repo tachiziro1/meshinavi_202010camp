@@ -14,7 +14,7 @@ services:
       - 8000:8000
     # マウントするボリュームを指定(ホスト:コンテナ)フォルダ単位でもファイル単位でも指定できる
     volumes:
-      - ./server:/var/www
+      - ./server:/var/www:cached
     # ログイン時のディレクトリを指定(無いディレクトリは指定できない)
     working_dir: /var/www
 
@@ -36,6 +36,6 @@ services:
     env_file: .env
     # マウントするボリュームを指定(ホスト:コンテナ) ここにDBデータが保存される
     volumes:
-      - "./mysql-data:/var/lib/mysql"
+      - "./mysql-data:/var/lib/mysql:cached"
     ports:
       - 3306:3306
