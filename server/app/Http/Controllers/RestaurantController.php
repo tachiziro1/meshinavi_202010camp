@@ -18,16 +18,17 @@ class RestaurantController extends Controller
 
         $name = $request->name;
         $category = $request->category;
-
         $query = Restaurant::query();
 
         if($name){
             $query -> where('name','like','%'.$name.'%');
         }if ($category){
-            $query -> where('category','like','%'.$category.'%');
+            $query -> whereHas('category',function($q) use ($category){
+                $q->where('name','like','%'.$category.'%');
+            });
         }
 
-        $restaurants = $query->simplePaginate(10);
+        $restaurants = $query->simplePaginate(5);
         $restaurants->appends(compact('name','category'));
         // if(!empty($name)){
         //     $restaurants = Restaurant::where('name','like','%'.$name.'%');
