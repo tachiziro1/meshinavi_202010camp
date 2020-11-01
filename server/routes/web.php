@@ -14,4 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'RestaurantController@index');
-Route::resource('restaurants', 'RestaurantController', ['only' => ['index', 'show']]);;
+Route::group(['middleware' => 'auth'], function (){
+    Route::resource('restaurants', 'RestaurantController', ['only' => ['show']]);;
+
+});
+Route::resource('restaurants', 'RestaurantController', ['only' => ['index']]);;
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
